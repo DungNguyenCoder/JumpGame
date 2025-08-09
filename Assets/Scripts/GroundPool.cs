@@ -5,10 +5,10 @@ using UnityEngine.PlayerLoop;
 
 public class GroundPool : MonoBehaviour
 {
-    [SerializeField] private Ground _ground;
+    [SerializeField] private Ground _groundPrefabs;
 
     private int amount = 10;
-    private Ground[] _groundPool = new Ground[1000];
+    private List<Ground> _groundPool = new List<Ground>();
 
     private void Awake()
     {
@@ -17,28 +17,33 @@ public class GroundPool : MonoBehaviour
 
     private void InitPool()
     {
-        for (int i = 0; i <= 10; i++)
+        for (int i = 0; i < amount; i++)
         {
-            Ground ground = Instantiate(_ground);
-            _groundPool[i] = ground;
+            Ground ground = Instantiate(_groundPrefabs);
             ground.gameObject.SetActive(false);
+            _groundPool.Add(ground);
             Debug.Log("Init Ground");
         }
     }
 
     public Ground GetGround()
     {
-        for (int i = 0; i <= 10; i++)
+        foreach (Ground ground in _groundPool)
         {
-            if (!_groundPool[i].gameObject.activeInHierarchy)
+            if (!ground.gameObject.activeInHierarchy)
             {
-                _groundPool[i].gameObject.SetActive(true);
-                return _groundPool[i];
+                ground.gameObject.SetActive(true);
+                return ground;
             }
         }
-        Ground ground = Instantiate(_ground);
+        Ground newGround = Instantiate(_groundPrefabs);
         ++amount;
-        ground.gameObject.SetActive(true);
-        return ground;
+        newGround.gameObject.SetActive(true);
+        return newGround;
+    }
+
+    public void ReturnPool(Ground ground)
+    {
+        ground.gameObject.SetActive(false);
     }
 }

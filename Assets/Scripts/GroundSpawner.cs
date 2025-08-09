@@ -9,7 +9,10 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private int _targetGroundCount = 5;
     [SerializeField] private float _groundSpacingY = 2.5f;
     [SerializeField] private float _cameraYOffSet = -2f;
+    private float _randomXPosition;
     private List<Ground> _activeGrounds = new List<Ground>();
+
+    CameraController cam;
     private int _totalGroundSpawned = 0;
     private void Start()
     {
@@ -17,20 +20,13 @@ public class GroundSpawner : MonoBehaviour
         {
             SpawnGround();
         }
+        cam = Camera.main.GetComponent<CameraController>();
     }
-    private void Update()
-    {
-        _activeGrounds.RemoveAll(g => g == null || !g.gameObject.activeInHierarchy);
 
-        while (_activeGrounds.Count < _targetGroundCount)
-        {
-            SpawnGround();
-        }
-    }
-    private void SpawnGround()
+    public void SpawnGround()
     {
         Ground newGround = _groundPool.GetGround();
-        Vector3 spawnPosition = _groundStart.position + Vector3.down * _groundSpacingY * _totalGroundSpawned;
+        Vector3 spawnPosition = _groundStart.position + Vector3.down * _groundSpacingY * _totalGroundSpawned + Vector3.right * Random.Range(-2, 2);
         newGround.transform.position = spawnPosition;
         _activeGrounds.Add(newGround);
         ++_totalGroundSpawned;
@@ -51,7 +47,6 @@ public class GroundSpawner : MonoBehaviour
             }
         }
 
-        CameraController cam = Camera.main.GetComponent<CameraController>();
         if (cam != null)
         {
             cam.MoveToY(landedY + _cameraYOffSet);
@@ -61,5 +56,17 @@ public class GroundSpawner : MonoBehaviour
         {
             SpawnGround();
         }
+    }
+
+    public List<Ground> ActiveGrounds
+    {
+        get { return _activeGrounds; }
+        set { _activeGrounds = value; }
+    }
+
+    public int TargetGroundCount
+    {
+        get { return _targetGroundCount; }
+        set { _targetGroundCount = value;}
     }
 }

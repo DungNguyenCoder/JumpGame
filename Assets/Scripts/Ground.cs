@@ -6,7 +6,6 @@ public class Ground : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
     private int _touchEdgeCount = 0;
-    private Rigidbody2D _rb;
     private float _leftEdge;
     private float _rightEdge;
     private int _direction = 1;
@@ -16,10 +15,7 @@ public class Ground : MonoBehaviour
     private int _touchEdgeLimit = 3;
     private float _disFromEdgeLimit = 0.6f;
     private bool _playerOnTop = false;
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+
     private void Start()
     {
         Camera cam = Camera.main;
@@ -40,7 +36,7 @@ public class Ground : MonoBehaviour
     }
     private void MoveGround()
     {
-        _rb.velocity = new Vector2(_moveSpeed * _direction, _rb.velocity.y);
+        transform.position += new Vector3(_moveSpeed * _direction * Time.deltaTime, 0f, 0f);
     }
     private void CheckEdgeAndReverse()
     {
@@ -74,13 +70,11 @@ public class Ground : MonoBehaviour
     }
     private void OnEnable()
     {
-
         _touchEdgeCount = 0;
         _direction = 1;
-        _rb.velocity = Vector2.zero;
         _time = 0f;
     }
-    private void DisableGround()
+    public void DisableGround()
     {
         Debug.Log("Ground disable");
         gameObject.SetActive(false);
@@ -98,7 +92,7 @@ public class Ground : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             _playerOnTop = false;
-            DisableGround();
+            // DisableGround();
         }
     }
 }
