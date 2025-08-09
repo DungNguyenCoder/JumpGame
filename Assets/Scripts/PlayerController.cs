@@ -5,22 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _jumpForce = 5f;
-    [SerializeField] private GroundSpawner _groundSpawner;
+    [SerializeField] private Ground _ground;
+    private Ground _currentGround;
     private bool _canJump = false;
     private bool _onGround = false;
     private Rigidbody2D _rb;
-    private Rigidbody2D _groundRb = null;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-    }
-    private void FixedUpdate()
-    {
-        if (_onGround && _groundRb != null)
-        {
-            Vector2 groundVel = _groundRb.velocity;
-            _rb.velocity = new Vector2(groundVel.x, _rb.velocity.y);
-        }
     }
     private void Update()
     {
@@ -70,7 +63,6 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(0f, _jumpForce);
             _canJump = false;
             _onGround = false;
-            _groundRb = null;
         }
 
     }
@@ -80,17 +72,13 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.AddScore();
         _canJump = true;
         _onGround = true;
-        Rigidbody2D groundRb = collision.gameObject.GetComponent<Rigidbody2D>();
+        HandleGroundLanding(collision.gameObject);
+    }
 
-        Ground landedGround = collision.gameObject.GetComponent<Ground>();
-        if (landedGround != null && _groundSpawner != null)
-        {
-            _groundSpawner.PlayerLanded(landedGround);
-        }
-        if (groundRb != null)
-        {
-            _groundRb = groundRb;
-        }
+    private void HandleGroundLanding(GameObject groundObject)
+    {
+        Debug.Log("ground: " + groundObject.name);
+        transform.SetParent(groundObject.transform);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -99,8 +87,11 @@ public class PlayerController : MonoBehaviour
         {
             _canJump = false;
             _onGround = false;
-            _groundRb = null;
-            _rb.velocity = new Vector2(0f,_rb.velocity.y);
+            _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            transform.SetParent(null);
+            Debug.Log(_ground.gameObject.name + " | " + _ground.gameObject.transform.position);
+            // _ground.DisableGround();
+            collision.gameObject.SetActive(false);
         }
     }
 }

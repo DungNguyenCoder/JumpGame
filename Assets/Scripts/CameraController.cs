@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         if (_shouldFollow)
         {
-            transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * _followSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Time.deltaTime * _followSpeed);
 
             if (Mathf.Abs(transform.position.y - _targetPosition.y) < 0.01f)
             {

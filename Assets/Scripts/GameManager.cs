@@ -19,7 +19,7 @@ class GameManager : MonoBehaviour
     public void AddScore()
     {
         _score++;
-        Debug.Log("Score: " + _score);
+        // Debug.Log("Score: " + _score);
     }
 
     public void GameOver()
