@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _jumpForce = 5f;
+    [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
     private Ground _currentGround;
     private bool _canJump = false;
@@ -57,7 +58,6 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        Debug.Log("jump");
         if (_canJump)
         {
             _rb.velocity = new Vector2(0f, _jumpForce);
@@ -73,11 +73,13 @@ public class PlayerController : MonoBehaviour
         _canJump = true;
         _onGround = true;
         HandleGroundLanding(collision.gameObject);
+        Ground landedGround = collision.gameObject.GetComponent<Ground>();
+        if (landedGround != null && _groundSpawner != null)
+            _groundSpawner.PlayerLanded(landedGround);
     }
 
     private void HandleGroundLanding(GameObject groundObject)
     {
-        Debug.Log("ground: " + groundObject.name);
         transform.SetParent(groundObject.transform);
     }
 
@@ -89,8 +91,6 @@ public class PlayerController : MonoBehaviour
             _onGround = false;
             _rb.velocity = new Vector2(0f, _rb.velocity.y);
             transform.SetParent(null);
-            Debug.Log(_ground.gameObject.name + " | " + _ground.gameObject.transform.position);
-            // _ground.DisableGround();
             collision.gameObject.SetActive(false);
         }
     }

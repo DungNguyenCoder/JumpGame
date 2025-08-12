@@ -9,7 +9,6 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private int _targetGroundCount = 5;
     [SerializeField] private float _groundSpacingY = 2.5f;
     [SerializeField] private float _cameraYOffSet = -2f;
-    private float _randomXPosition;
     private List<Ground> _activeGrounds = new List<Ground>();
 
     CameraController cam;

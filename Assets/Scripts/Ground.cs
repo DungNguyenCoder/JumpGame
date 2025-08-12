@@ -47,14 +47,12 @@ public class Ground : MonoBehaviour
             _direction = -1;
             if (_playerOnTop)
                 ++_touchEdgeCount;
-            Debug.Log("touch right");
         }
         else if (xPos - _halfWidth < _leftEdge)
         {
             _direction = 1;
             if (_playerOnTop)
                 ++_touchEdgeCount;
-            Debug.Log("touch left");
         }
 
 
