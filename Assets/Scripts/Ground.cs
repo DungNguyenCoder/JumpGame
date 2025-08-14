@@ -56,7 +56,7 @@ public class Ground : MonoBehaviour
         }
 
 
-        if (_touchEdgeCount >= _touchEdgeLimit * 3 && _playerOnTop)
+        if (_touchEdgeCount >= _touchEdgeLimit && _playerOnTop)
         {
             _time += Time.deltaTime;
             if (_time >= _timeBeforeDestroy)
@@ -74,6 +74,13 @@ public class Ground : MonoBehaviour
     }
     public void DisableGround()
     {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Player"))
+            {
+                child.SetParent(null, true);
+            }
+        }
         Debug.Log("Ground disable");
         gameObject.SetActive(false);
     }
