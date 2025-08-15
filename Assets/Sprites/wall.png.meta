@@ -113,12 +113,12 @@ TextureImporter:
       name: wall_0
       rect:
         serializedVersion: 2
-        x: 621
-        y: 508
-        width: 189
-        height: 79
+        x: 619
+        y: 505
+        width: 195
+        height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -156,11 +156,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 382
+        y: 384
         width: 208
-        height: 318
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 316
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,6 +168,48 @@ TextureImporter:
       bones: []
       spriteID: 9131bef16d12a2d4099aba9669847864
       internalID: 1014247085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_3
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 590
+        width: 242
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a168463e3f104ec40a2ef6d4bd074cc6
+      internalID: 432845554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_4
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 505
+        width: 193
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c314de17c955c4b8a51e1cdd9aebf7
+      internalID: 378625864
       vertices: []
       indices: 
       edges: []
@@ -186,6 +228,8 @@ TextureImporter:
       wall_0: 97167804
       wall_1: -1427195367
       wall_2: 1014247085
+      wall_3: 432845554
+      wall_4: 378625864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

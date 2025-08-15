@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     private Ground _currentGround;
     private bool _canJump = false;
     private bool _onGround = false;
+    private float _perfect = 0.05f;
     private Rigidbody2D _rb;
-
+    private Collider2D _col;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _col = GetComponent<Collider2D>();
     }
     private void Update()
     {
@@ -69,7 +71,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameManager.Instance.AddScore();
+        Vector3 groundCol = collision.collider.bounds.center;
+        float disX = Mathf.Abs(_col.bounds.center.x - groundCol.x);
+        if (disX < _perfect)
+        {
+            GameManager.Instance.AddScore(2);
+            Debug.Log("Perfect");  
+        }
+        else
+        {
+            GameManager.Instance.AddScore(1);
+        }
         _canJump = true;
         _onGround = true;
         HandleGroundLanding(collision.gameObject);

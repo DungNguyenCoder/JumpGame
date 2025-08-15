@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private Animator _animator;
     private int _touchEdgeCount = 0;
     private float _leftEdge;
     private float _rightEdge;
@@ -16,6 +18,11 @@ public class Ground : MonoBehaviour
     private float _disFromEdgeLimit = 0.6f;
     private bool _playerOnTop = false;
 
+    private void Awake()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
+
     private void Start()
     {
         Camera cam = Camera.main;
@@ -25,7 +32,7 @@ public class Ground : MonoBehaviour
         _leftEdge = cam.transform.position.x - camWidth / 2f + _disFromEdgeLimit;
         _rightEdge = cam.transform.position.x + camWidth / 2f - _disFromEdgeLimit;
 
-        _halfWidth = GetComponent<SpriteRenderer>().bounds.size.x / 2f;
+        _halfWidth = spriteRenderer.bounds.size.x / 2f;
 
         _direction = Random.value < 0.5f ? -1 : 1;
     }
@@ -55,6 +62,11 @@ public class Ground : MonoBehaviour
                 ++_touchEdgeCount;
         }
 
+        if (_touchEdgeCount == 1)
+        {
+            _animator.SetTrigger("Crash");
+            Debug.Log("Crash");
+        }
 
         if (_touchEdgeCount >= _touchEdgeLimit && _playerOnTop)
         {
@@ -63,6 +75,7 @@ public class Ground : MonoBehaviour
             {
                 DisableGround();
                 _time = 0f;
+                _touchEdgeCount = 0;
             }
         }
     }
