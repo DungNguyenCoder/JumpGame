@@ -6,7 +6,8 @@ public class Ground : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private Animator _animator;
+    [SerializeField] private SpriteRenderer _normalSprite;
+    [SerializeField] private SpriteRenderer _crashSprite;
     private int _touchEdgeCount = 0;
     private float _leftEdge;
     private float _rightEdge;
@@ -18,14 +19,10 @@ public class Ground : MonoBehaviour
     private float _disFromEdgeLimit = 0.6f;
     private bool _playerOnTop = false;
     private bool _checkSFX = false;
-
-    private void Awake()
-    {
-        _animator = GetComponentInChildren<Animator>();
-    }
-
     private void Start()
     {
+        _normalSprite.gameObject.SetActive(true);
+        _crashSprite.gameObject.SetActive(false);
         Camera cam = Camera.main;
         float camHeight = 2f * cam.orthographicSize;
         float camWidth = camHeight * cam.aspect;
@@ -66,7 +63,8 @@ public class Ground : MonoBehaviour
         if (_touchEdgeCount == 1 && _checkSFX == false)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.crash);
-            _animator.SetTrigger("Crash");
+            _normalSprite.gameObject.SetActive(false);
+            _crashSprite.gameObject.SetActive(true);
             Debug.Log("Crash");
             _checkSFX = true;
         }

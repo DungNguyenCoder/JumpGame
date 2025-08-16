@@ -9,7 +9,6 @@ class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private TextMeshProUGUI _inGameScore;
     private int _score = -2;
-
     private bool _isPause = false;
     private void Awake()
     {
@@ -20,9 +19,9 @@ class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Key down");
             TogglePause();
