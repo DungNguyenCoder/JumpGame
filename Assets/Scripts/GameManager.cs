@@ -9,6 +9,8 @@ class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private TextMeshProUGUI _inGameScore;
     private int _score = -2;
+
+    private bool _isPause = false;
     private void Awake()
     {
         if (Instance == null)
@@ -16,6 +18,15 @@ class GameManager : MonoBehaviour
             Instance = this;
         }
         Time.timeScale = 1f;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            Debug.Log("Key down");
+            TogglePause();
+        }
     }
 
     public void AddScore(int score)
@@ -34,7 +45,34 @@ class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         Debug.LogError("Game Over");
         Time.timeScale = 0f;
+    }
+    private void TogglePause()
+    {
+        if (_isPause)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        AudioManager.Instance.StopMusic();
+        _isPause = true;
+        Debug.Log("Game pause");
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        AudioManager.Instance.ResumeMusic();
+        _isPause = false;
+        Debug.Log("Game resume");
     }
 }

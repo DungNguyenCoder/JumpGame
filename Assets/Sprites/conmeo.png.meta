@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 782085895426b764fa539eb139c39bfd
+guid: 9c9103a2665bed44aa58d98ad1d022bc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_Large_1_0
+      name: conmeo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 248
-        width: 900
-        height: 1800
+        x: 2
+        y: 221
+        width: 38
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 766f4b682333b254d809ef7d7ff7c2f6
-      internalID: 707038575
+      spriteID: 9b09b1bab08868942bc3030f4f30787f
+      internalID: -34519392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_Large_1_1
+      name: conmeo_1
       rect:
         serializedVersion: 2
-        x: 900
-        y: 248
-        width: 900
-        height: 1800
+        x: 2
+        y: 147
+        width: 78
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fef5562f731d4704a81c6d428838cece
-      internalID: -170090946
+      spriteID: b965ea1b365f0f14189de4e1ccfeb8c0
+      internalID: -1684736923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conmeo_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 147
+        width: 32
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a553c7361698d4ca9bf4c168e01657
+      internalID: -1581868295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conmeo_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 4
+        width: 139
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b3f5b969c18fb4eba7a467c8899db7
+      internalID: -15809662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conmeo_4
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 54
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dda2e5389e201a4d9140e265f1c2118
+      internalID: 473395586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conmeo_5
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 4
+        width: 34
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a328d078f53a48e4e9a2876a6dd1a09b
+      internalID: -403302723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conmeo_6
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 4
+        width: 29
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56566254ab58b9a448afcf01fb082564
+      internalID: -1337013088
       vertices: []
       indices: 
       edges: []
@@ -162,8 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_Large_1_0: 707038575
-      Background_Large_1_1: -170090946
+      conmeo_0: -34519392
+      conmeo_1: -1684736923
+      conmeo_2: -1581868295
+      conmeo_3: -15809662
+      conmeo_4: 473395586
+      conmeo_5: -403302723
+      conmeo_6: -1337013088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

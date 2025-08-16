@@ -17,6 +17,7 @@ public class Ground : MonoBehaviour
     private int _touchEdgeLimit = 3;
     private float _disFromEdgeLimit = 0.6f;
     private bool _playerOnTop = false;
+    private bool _checkSFX = false;
 
     private void Awake()
     {
@@ -62,10 +63,12 @@ public class Ground : MonoBehaviour
                 ++_touchEdgeCount;
         }
 
-        if (_touchEdgeCount == 1)
+        if (_touchEdgeCount == 1 && _checkSFX == false)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.crash);
             _animator.SetTrigger("Crash");
             Debug.Log("Crash");
+            _checkSFX = true;
         }
 
         if (_touchEdgeCount >= _touchEdgeLimit && _playerOnTop)

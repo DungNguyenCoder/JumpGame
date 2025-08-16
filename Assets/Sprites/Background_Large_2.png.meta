@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 782085895426b764fa539eb139c39bfd
+guid: 781fe2d568be5dc45b13e52588c5b6a7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_Large_1_0
+      name: Background_Large_2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 248
-        width: 900
-        height: 1800
+        y: 246
+        width: 902
+        height: 1802
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,29 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 766f4b682333b254d809ef7d7ff7c2f6
-      internalID: 707038575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background_Large_1_1
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 248
-        width: 900
-        height: 1800
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fef5562f731d4704a81c6d428838cece
-      internalID: -170090946
+      spriteID: d36cc87209cd6be4eaf0585d968ee58d
+      internalID: 87637878
       vertices: []
       indices: 
       edges: []
@@ -162,8 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_Large_1_0: 707038575
-      Background_Large_1_1: -170090946
+      Background_Large_2_0: 87637878
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool _canJump = false;
     private bool _onGround = false;
     private float _perfect = 0.05f;
+    private bool _isOver = false;
     private Rigidbody2D _rb;
     private Collider2D _col;
     private void Awake()
@@ -34,9 +35,10 @@ public class PlayerController : MonoBehaviour
 
         float playerBottomY = transform.position.y - GetComponent<SpriteRenderer>().bounds.size.y / 2f;
 
-        if (playerBottomY < camBottomY)
+        if (playerBottomY < camBottomY && !_isOver)
         {
             GameManager.Instance.GameOver();
+            _isOver = true;
         }
     }
 
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_canJump)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
             _rb.velocity = new Vector2(0f, _jumpForce);
             _canJump = false;
             _onGround = false;
