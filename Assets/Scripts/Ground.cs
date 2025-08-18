@@ -16,7 +16,7 @@ public class Ground : MonoBehaviour
     private float _time = 0f;
     private float _timeBeforeDestroy = 0.1f;
     private int _touchEdgeLimit = 3;
-    private float _disFromEdgeLimit = 0.6f;
+    private float _disFromEdgeLimit = 0.3f;
     private bool _playerOnTop = false;
     private bool _checkSFX = false;
     private void Start()
@@ -82,9 +82,13 @@ public class Ground : MonoBehaviour
     }
     private void OnEnable()
     {
+        _normalSprite.gameObject.SetActive(true);
+        _crashSprite.gameObject.SetActive(false);
         _touchEdgeCount = 0;
         _direction = 1;
         _time = 0f;
+        _checkSFX = false;
+        _playerOnTop = false;
     }
     public void DisableGround()
     {
