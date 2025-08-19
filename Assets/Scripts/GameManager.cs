@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [SerializeField] private TextMeshProUGUI _inGameScore;
+    public event System.Action<int> OnScoreChanged;
+    [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private GameObject _gameOverPanel;
     private int _score = -2;
     private bool _isPause = false;
     private void Awake()
@@ -15,6 +18,10 @@ class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         Time.timeScale = 1f;
     }
@@ -31,22 +38,15 @@ class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         _score += score;
-        UpdateScore();
-    }
-
-    private void UpdateScore()
-    {
-        if (_inGameScore != null)
-        {
-            _inGameScore.text = _score.ToString();
-        }
+        OnScoreChanged?.Invoke(_score);
     }
 
     public void GameOver()
     {
-        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PauseMusic();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
-        Debug.LogError("Game Over");
+        _gameOverPanel.SetActive(true);
+        Debug.Log("Game Over");
         Time.timeScale = 0f;
     }
     private void TogglePause()
@@ -63,8 +63,9 @@ class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
-        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PauseMusic();
         _isPause = true;
+        _pausePanel.SetActive(true);
         Debug.Log("Game pause");
     }
     public void ResumeGame()
@@ -72,6 +73,14 @@ class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         AudioManager.Instance.ResumeMusic();
         _isPause = false;
+        _pausePanel.SetActive(false);
         Debug.Log("Game resume");
+    }
+    public void RestartGame()
+    {
+        _gameOverPanel.SetActive(false);
+        _pausePanel.SetActive(false);
+        AudioManager.Instance.PlayMusic();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

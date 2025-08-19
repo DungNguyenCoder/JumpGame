@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 782085895426b764fa539eb139c39bfd
+guid: e9c6213f2690ac545860995a5d9f13e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 160
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,34 +110,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background_Large_1_0
+      name: Background_Large_2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 248
-        width: 900
-        height: 1800
+        y: 245
+        width: 899
+        height: 1802
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 766f4b682333b254d809ef7d7ff7c2f6
-      internalID: 707038575
+      spriteID: afc4bd68f374e654ba2d38d2d6c582f4
+      internalID: -781541513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Background_Large_1_1
+      name: Background_Large_2_1
       rect:
         serializedVersion: 2
-        x: 900
-        y: 248
-        width: 900
-        height: 1800
+        x: 901
+        y: 246
+        width: 902
+        height: 1802
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fef5562f731d4704a81c6d428838cece
-      internalID: -170090946
+      spriteID: f5c04cfc4fb3a20478c41a83e72bc223
+      internalID: -164155342
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Background_Large_1_0: 707038575
-      Background_Large_1_1: -170090946
+      Background_Large_2_0: -781541513
+      Background_Large_2_1: -164155342
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

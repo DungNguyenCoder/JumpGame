@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,9 +54,13 @@ public class PlayerController : MonoBehaviour
         //         Jump();
         //     }
         // }
-
         if (Application.isEditor && Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Click on UI");
+                return;
+            }
             Jump();
         }
     }
