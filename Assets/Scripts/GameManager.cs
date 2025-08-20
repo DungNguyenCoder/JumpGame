@@ -5,40 +5,30 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.SceneManagement;
 
-class GameManager : MonoBehaviour
+class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-    public event System.Action<int> OnScoreChanged;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private TextMeshProUGUI _inGameScore;
+    [SerializeField] private TextMeshProUGUI _gameOverScore;
     private int _score = -2;
     private bool _isPause = false;
-    private void Awake()
+    public override void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        base.Awake();
         Time.timeScale = 1f;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("Key down");
-            TogglePause();
-        }
     }
 
     public void AddScore(int score)
     {
         _score += score;
-        OnScoreChanged?.Invoke(_score);
+        UpdateScoreUI();
+    }
+
+    private void UpdateScoreUI()
+    {
+        _gameOverScore.text = _score.ToString();
+        _inGameScore.text = _score.ToString();
     }
 
     public void GameOver()
@@ -48,17 +38,6 @@ class GameManager : MonoBehaviour
         _gameOverPanel.SetActive(true);
         Debug.Log("Game Over");
         Time.timeScale = 0f;
-    }
-    private void TogglePause()
-    {
-        if (_isPause)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
     }
     public void PauseGame()
     {

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
@@ -51,16 +50,5 @@ public class AudioManager : MonoBehaviour
 
         if (musicSource) musicSource.mute = false;
         if (SFXSource) SFXSource.mute = false;
-    }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

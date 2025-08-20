@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("Click on UI");
                 return;
             }
             Jump();
