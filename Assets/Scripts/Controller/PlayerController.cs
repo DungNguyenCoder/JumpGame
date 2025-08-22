@@ -56,8 +56,10 @@ public class PlayerController : MonoBehaviour
         // }
         if (Application.isEditor && Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Jump");
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
+                Debug.Log("Click on UI");
                 return;
             }
             Jump();
@@ -104,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag(GameConfig.GROUND_TAG))
         {
             _canJump = false;
             _onGround = false;

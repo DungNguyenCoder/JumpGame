@@ -94,7 +94,7 @@ public class Ground : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.CompareTag("Player"))
+            if (child.CompareTag(GameConfig.PLAYER_TAG))
             {
                 child.SetParent(null, true);
             }
@@ -105,14 +105,14 @@ public class Ground : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(GameConfig.PLAYER_TAG))
         {
             _playerOnTop = true;
         }
     }
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(GameConfig.PLAYER_TAG))
         {
             _playerOnTop = false;
             // DisableGround();

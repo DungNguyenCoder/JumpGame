@@ -43,6 +43,7 @@ public class AudioManager : Singleton<AudioManager>
 
         if (musicSource) musicSource.mute = true;
         if (SFXSource) SFXSource.mute = true;
+        Debug.Log("Mute");
     }
     public void UnMuteAll()
     {
@@ -50,5 +51,6 @@ public class AudioManager : Singleton<AudioManager>
 
         if (musicSource) musicSource.mute = false;
         if (SFXSource) SFXSource.mute = false;
+        Debug.Log("UnMute");
     }
 }
