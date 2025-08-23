@@ -2876,7 +2876,7 @@ GameObject:
   - component: {fileID: 1507708062}
   m_Layer: 0
   m_Name: StartGround
-  m_TagString: Ground
+  m_TagString: StartGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3745,6 +3745,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2114664213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3474322690106358581, guid: c0a5c09095e6c394a903a36df0e5e986, type: 3}
+  m_PrefabInstance: {fileID: 6496151696323846047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6496151696323846047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3753,6 +3758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538513814}
     m_Modifications:
+    - target: {fileID: 1433968577613943681, guid: c0a5c09095e6c394a903a36df0e5e986, type: 3}
+      propertyPath: perfect
+      value: 
+      objectReference: {fileID: 2114664213}
     - target: {fileID: 3607025708484492853, guid: c0a5c09095e6c394a903a36df0e5e986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

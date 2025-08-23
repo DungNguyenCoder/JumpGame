@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Audio
+  - StartGround
   layers:
   - Default
   - TransparentFX

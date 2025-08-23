@@ -20,6 +20,7 @@ public class GroundPool : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             Ground ground = Instantiate(_groundPrefabs);
+            ground.name = "" + (i + 1);
             ground.gameObject.SetActive(false);
             _groundPool.Add(ground);
             Debug.Log("Init Ground");

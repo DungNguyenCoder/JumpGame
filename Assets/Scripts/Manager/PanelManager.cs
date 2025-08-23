@@ -21,8 +21,8 @@ public class PanelManager : Singleton<PanelManager>
         {
             return panels[panelName];
         }
-        Debug.Log(panelName);
         Panel panel = Resources.Load<Panel>("Panel/" + panelName);
+        Debug.Log(panel.name);
         Panel newPanel = Instantiate(panel, this.transform);
         newPanel.name = panelName;
         newPanel.gameObject.SetActive(false);

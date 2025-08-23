@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
+    
     private Ground _currentGround;
     private bool _canJump = false;
     private bool _onGround = false;
-    private float _perfect = 0.05f;
+    private float _perfect = 0.1f;
     private bool _isOver = false;
     private Rigidbody2D _rb;
     private Collider2D _col;
@@ -80,12 +81,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag(GameConfig.START_GROUND_TAG))
+        {
+            _canJump = true;
+            _onGround = true;
+            HandleGroundLanding(collision.gameObject);
+            return;
+        }
         Vector3 groundCol = collision.collider.bounds.center;
         float disX = Mathf.Abs(_col.bounds.center.x - groundCol.x);
         if (disX < _perfect)
         {
             GameManager.Instance.AddScore(2);
-            Debug.Log("Perfect");  
+            GameManager.Instance.SetPerfect(true);
+            Debug.Log("Perfect");
         }
         else
         {
@@ -106,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(GameConfig.GROUND_TAG))
+        if (collision.gameObject.CompareTag(GameConfig.GROUND_TAG) || collision.gameObject.CompareTag(GameConfig.START_GROUND_TAG))
         {
             _canJump = false;
             _onGround = false;

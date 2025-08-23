@@ -19,4 +19,19 @@ public class MainMenuUI : MonoBehaviour
     {
         SceneManager.LoadScene("GamePlay");
     }
+
+    public void OnClickSettingButton()
+    {
+        GameManager.Instance.Setting();
+    }
+
+    public void OnClickChooseButton()
+    {
+        GameManager.Instance.Choose();
+    }
+
+    public void OnClickNoAdsButton()
+    {
+        //todo
+    }
 }
