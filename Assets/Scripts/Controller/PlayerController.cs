@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
-    
+    [SerializeField] private SpriteRenderer playerRenderer;
+
     private Ground _currentGround;
     private bool _canJump = false;
     private bool _onGround = false;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
+        if (playerRenderer == null)
+            playerRenderer = GetComponent<SpriteRenderer>();
+        ApplySelectedSkin();
     }
     private void Update()
     {
@@ -122,6 +126,18 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = new Vector2(0f, _rb.velocity.y);
             transform.SetParent(null);
             collision.gameObject.SetActive(false);
+        }
+    }
+
+    private void ApplySelectedSkin()
+    {
+        string charName = PlayerPrefs.GetString(GameConfig.SELECTED_CHARACTER_KEY, "");
+        if (string.IsNullOrEmpty(charName)) return;
+
+        CharacterData data = Resources.Load<CharacterData>("Data/" + charName);
+        if (data != null && data.spriteDemo != null && playerRenderer != null)
+        {
+            playerRenderer.sprite = data.spriteDemo;
         }
     }
 }

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class CharacterPanel : MonoBehaviour
 {
     [SerializeField] private Character _characterPrefab;
     [SerializeField] private GameObject _board;
+    [SerializeField] private Image _characterImageDemo;
+    [SerializeField] private TextMeshProUGUI _characterName;
     private void Start()
     {
         LoadAvatar();
@@ -18,7 +21,15 @@ public class CharacterPanel : MonoBehaviour
         foreach (CharacterData characterData in characterDatas)
         {
             Character character = Instantiate(_characterPrefab, _board.transform);
-            character.SetCharacterIcon(characterData.spriteIcon);
+            character.Setup(characterData, this);
         }
-    } 
+    }
+
+    public void SelectCharacter(CharacterData data)
+    {
+        _characterImageDemo.sprite = data.spriteDemo;
+        _characterName.text = data.characterName;
+        PlayerPrefs.SetString(GameConfig.SELECTED_CHARACTER_KEY, data.name);
+        PlayerPrefs.Save();
+    }
 }

@@ -83,10 +83,9 @@ class GameManager : Singleton<GameManager>
     {
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_CHOOSE);
     }
-
-    public void ClosePanel(string panelName)
+    public void Credit()
     {
-        PanelManager.Instance.ClosePanel(panelName);
+        Application.OpenURL(GameConfig.GITHUB_LINK);
     }
 
     public void SetPerfect(bool value)

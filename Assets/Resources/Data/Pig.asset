@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteIcon: {fileID: 1559071645, guid: 4d1d1894bf0133147b386508fb8c756e, type: 3}
   spriteDemo: {fileID: 537835197, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
+  characterName: Pig
