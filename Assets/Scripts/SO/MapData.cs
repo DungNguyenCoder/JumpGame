@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Map", menuName = "MapData", order = 0)]
 public class MapData : ScriptableObject
 {
+    public Sprite mapIcon;
     public Sprite wall;
     public Sprite backGround;
+    public Sprite normalGround;
+    public Sprite crashGround;
 }

@@ -17,7 +17,7 @@ public class CharacterPanel : MonoBehaviour
 
     public void LoadAvatar()
     {
-        CharacterData[] characterDatas = Resources.LoadAll<CharacterData>("Data/");
+        CharacterData[] characterDatas = Resources.LoadAll<CharacterData>(GameConfig.CHARACTER_DATA_PATH);
         foreach (CharacterData characterData in characterDatas)
         {
             Character character = Instantiate(_characterPrefab, _board.transform);

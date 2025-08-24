@@ -21,6 +21,7 @@ public class Ground : MonoBehaviour
     private bool _checkSFX = false;
     private void Start()
     {
+        ApplyGround();
         _normalSprite.gameObject.SetActive(true);
         _crashSprite.gameObject.SetActive(false);
         Camera cam = Camera.main;
@@ -116,6 +117,18 @@ public class Ground : MonoBehaviour
         {
             _playerOnTop = false;
             // DisableGround();
+        }
+    }
+    private void ApplyGround()
+    {
+        string mapName = PlayerPrefs.GetString(GameConfig.SELECTED_MAP_KEY, "");
+        if (string.IsNullOrEmpty(mapName)) return;
+
+        MapData data = Resources.Load<MapData>(GameConfig.MAP_DATA_PATH + mapName);
+        if (data != null)
+        {
+            _normalSprite.sprite = data.normalGround;
+            _crashSprite.sprite = data.crashGround;
         }
     }
 }

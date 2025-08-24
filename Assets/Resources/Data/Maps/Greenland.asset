@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e711cb3e687e644286a9860ca19b97d, type: 3}
+  m_Name: Greenland
+  m_EditorClassIdentifier: 
+  mapIcon: {fileID: 761986016, guid: 4d1d1894bf0133147b386508fb8c756e, type: 3}
+  wall: {fileID: 1826048895, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  backGround: {fileID: -658983630, guid: 781fe2d568be5dc45b13e52588c5b6a7, type: 3}
+  normalGround: {fileID: -1427195367, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  crashGround: {fileID: 306242842, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}

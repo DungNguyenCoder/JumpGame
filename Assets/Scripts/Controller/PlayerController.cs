@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         string charName = PlayerPrefs.GetString(GameConfig.SELECTED_CHARACTER_KEY, "");
         if (string.IsNullOrEmpty(charName)) return;
 
-        CharacterData data = Resources.Load<CharacterData>("Data/" + charName);
+        CharacterData data = Resources.Load<CharacterData>(GameConfig.CHARACTER_DATA_PATH + charName);
         if (data != null && data.spriteDemo != null && playerRenderer != null)
         {
             playerRenderer.sprite = data.spriteDemo;

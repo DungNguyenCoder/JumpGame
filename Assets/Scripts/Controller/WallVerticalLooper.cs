@@ -13,6 +13,7 @@ public class WallVerticalLooper : MonoBehaviour
     private float segmentHeight;
     void Awake()
     {
+        ApplyWall();
         InitWall();
         if (cameraTransform == null) cameraTransform = Camera.main.transform;
 
@@ -37,12 +38,12 @@ public class WallVerticalLooper : MonoBehaviour
             GameObject wall = Instantiate(_wall, _walls.transform);
             if (_isPlaceOnRight)
             {
-                wall.transform.position = new Vector3(5, 3, 0);
+                wall.transform.position = new Vector3(5, 4, 0);
                 wall.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
             else
             {
-                wall.transform.position = new Vector3(-5, 3, 0);
+                wall.transform.position = new Vector3(-5, 4, 0);
             }
             segments.Add(wall.transform);
         }
@@ -89,5 +90,21 @@ public class WallVerticalLooper : MonoBehaviour
 
         float edge = _isPlaceOnRight ? camX + halfW : camX - halfW;
         return _isPlaceOnRight ? (edge - insetX) : (edge + insetX);
+    }
+
+    private void ApplyWall()
+    {
+        string mapName = PlayerPrefs.GetString(GameConfig.SELECTED_MAP_KEY, "");
+        if (string.IsNullOrEmpty(mapName)) return;
+
+        MapData data = Resources.Load<MapData>(GameConfig.MAP_DATA_PATH + mapName);
+        if (data != null)
+        {
+            var sr = _wall.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sprite = data.wall;
+            }
+        }
     }
 }
