@@ -5,9 +5,10 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer _normalSprite;
     [SerializeField] private SpriteRenderer _crashSprite;
+    [SerializeField] private BoxCollider2D col;
+    [SerializeField] private bool _isStartGround;
     private int _touchEdgeCount = 0;
     private float _leftEdge;
     private float _rightEdge;
@@ -16,12 +17,14 @@ public class Ground : MonoBehaviour
     private float _time = 0f;
     private float _timeBeforeDestroy = 0.1f;
     private int _touchEdgeLimit = 3;
-    private float _disFromEdgeLimit = 0.3f;
+    private float _disFromEdgeLimit = 0.2f;
     private bool _playerOnTop = false;
     private bool _checkSFX = false;
     private void Start()
     {
         ApplyGround();
+        col.size = _normalSprite.sprite.bounds.size;
+        col.offset = _normalSprite.sprite.bounds.center;
         _normalSprite.gameObject.SetActive(true);
         _crashSprite.gameObject.SetActive(false);
         Camera cam = Camera.main;
@@ -31,18 +34,34 @@ public class Ground : MonoBehaviour
         _leftEdge = cam.transform.position.x - camWidth / 2f + _disFromEdgeLimit;
         _rightEdge = cam.transform.position.x + camWidth / 2f - _disFromEdgeLimit;
 
-        _halfWidth = spriteRenderer.bounds.size.x / 2f;
+        _halfWidth = _normalSprite.bounds.size.x / 2f;
 
         _direction = Random.value < 0.5f ? -1 : 1;
+        if(!_isStartGround)
+            _moveSpeed += Random.Range(-0.5f, 1.5f);
     }
     private void FixedUpdate()
     {
-        MoveGround();
-        CheckEdgeAndReverse();
+        if (!_isStartGround)
+        {
+            int randonDir = Random.value < 0.5f ? 0 : 1;
+            if (randonDir == 0)
+                MoveGroundNormal();
+            else
+                MoveGroundNotNormal();
+            CheckEdgeAndReverse();
+        }
     }
-    private void MoveGround()
+    private void MoveGroundNormal()
     {
         transform.position += new Vector3(_moveSpeed * _direction * Time.deltaTime, 0f, 0f);
+    }
+    private void MoveGroundNotNormal()
+    {
+        float _waveFrequency = Random.Range(0f, 2f);
+        float _waveAmplitude = Random.Range(0.2f, 0.5f);
+        float yOffset = Mathf.Sin(Time.time * _waveFrequency) * _waveAmplitude * Time.deltaTime;
+        transform.position += new Vector3(_moveSpeed * _direction * Time.deltaTime, yOffset, 0f);
     }
     private void CheckEdgeAndReverse()
     {
@@ -66,7 +85,6 @@ public class Ground : MonoBehaviour
             AudioManager.Instance.PlaySFX(AudioManager.Instance.crash);
             _normalSprite.gameObject.SetActive(false);
             _crashSprite.gameObject.SetActive(true);
-            Debug.Log("Crash");
             _checkSFX = true;
         }
 
@@ -100,7 +118,7 @@ public class Ground : MonoBehaviour
                 child.SetParent(null, true);
             }
         }
-        Debug.Log("Ground disable");
+        // Debug.Log("Ground disable");
         gameObject.SetActive(false);
     }
 
@@ -127,8 +145,25 @@ public class Ground : MonoBehaviour
         MapData data = Resources.Load<MapData>(GameConfig.MAP_DATA_PATH + mapName);
         if (data != null)
         {
-            _normalSprite.sprite = data.normalGround;
-            _crashSprite.sprite = data.crashGround;
+            if (!_isStartGround)
+            {
+                int randomGround = Random.value < 0.5f ? -1 : 1;
+                if (randomGround == -1)
+                {
+                    _normalSprite.sprite = data.smallNormalGround;
+                    _crashSprite.sprite = data.smallCrashGround;
+                }
+                else
+                {
+                    _normalSprite.sprite = data.bigNormalGround;
+                    _crashSprite.sprite = data.bigCrashGround;
+                }
+            }
+            else
+            {
+                _normalSprite.sprite = data.smallNormalGround;
+                _crashSprite.sprite = data.smallCrashGround;
+            }
         }
     }
 }

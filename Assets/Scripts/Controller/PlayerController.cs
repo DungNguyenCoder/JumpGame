@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
-    [SerializeField] private SpriteRenderer playerRenderer;
+    [SerializeField] private Animator animator;
+    // [SerializeField] private SpriteRenderer playerRenderer;
 
     private Ground _currentGround;
     private bool _canJump = false;
@@ -21,8 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
-        if (playerRenderer == null)
-            playerRenderer = GetComponent<SpriteRenderer>();
+        // if (playerRenderer == null)
+        //     playerRenderer = GetComponent<SpriteRenderer>();
         ApplySelectedSkin();
     }
     private void Update()
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         if (Application.isEditor && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Jump");
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            if (UIManager.Instance.IsPointerOverUI())
             {
                 Debug.Log("Click on UI");
                 return;
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameConfig.START_GROUND_TAG))
         {
+            Debug.Log("Landed on start ground");
             _canJump = true;
             _onGround = true;
             HandleGroundLanding(collision.gameObject);
@@ -135,9 +137,17 @@ public class PlayerController : MonoBehaviour
         if (string.IsNullOrEmpty(charName)) return;
 
         CharacterData data = Resources.Load<CharacterData>(GameConfig.CHARACTER_DATA_PATH + charName);
-        if (data != null && data.spriteDemo != null && playerRenderer != null)
+        if (data != null)
         {
-            playerRenderer.sprite = data.spriteDemo;
+            if (animator != null && data.animatorController != null)
+            {
+                Debug.Log("Load animator success");
+                animator.runtimeAnimatorController = data.animatorController;
+            }
+            else
+            {
+                Debug.LogWarning("Animator or AnimatorController missing in CharacterData!");
+            }
         }
     }
 }

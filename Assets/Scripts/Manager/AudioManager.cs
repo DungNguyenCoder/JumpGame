@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager>
             musicSource.Pause();
         }
     }
-    public void ResumeMusic()
+    public void ContinueMusic()
     {
         if (musicSource != null)
         {
@@ -52,5 +52,15 @@ public class AudioManager : Singleton<AudioManager>
         if (musicSource) musicSource.mute = false;
         if (SFXSource) SFXSource.mute = false;
         Debug.Log("UnMute");
+    }
+
+    public void PlayMusicFromStart()
+    {
+        if (!_isMuted && musicSource != null)
+        {
+            musicSource.Stop();
+            musicSource.time = 0f;
+            musicSource.Play();
+        }
     }
 }

@@ -36,4 +36,9 @@ public class InGameUI : MonoBehaviour
             if (perfect.activeSelf) perfect.SetActive(false);
         }
     }
+
+    public void OnClickPause()
+    {
+        GameManager.Instance.PauseGame();
+    }
 }

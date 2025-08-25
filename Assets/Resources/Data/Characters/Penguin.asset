@@ -15,3 +15,4 @@ MonoBehaviour:
   spriteIcon: {fileID: 24697582, guid: 4d1d1894bf0133147b386508fb8c756e, type: 3}
   spriteDemo: {fileID: 417259745, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
   characterName: Penguin
+  animatorController: {fileID: 9100000, guid: 977bcc03f7f0d7c40a03c9b4a69de687, type: 2}

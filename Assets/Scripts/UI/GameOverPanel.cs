@@ -13,6 +13,7 @@ public class GameOverPanel : Panel
     }
     public void OnClickMainMenuButton()
     {
+        AudioManager.Instance.PlayMusicFromStart();
         SceneManager.LoadScene("MainMenu");
     }
 

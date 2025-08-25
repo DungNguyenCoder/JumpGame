@@ -15,3 +15,4 @@ MonoBehaviour:
   spriteIcon: {fileID: -142961711, guid: 4d1d1894bf0133147b386508fb8c756e, type: 3}
   spriteDemo: {fileID: -880977665, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
   characterName: Dog
+  animatorController: {fileID: 9100000, guid: ab9296b23c7ef3a43a7a6dd7a3d49c2f, type: 2}

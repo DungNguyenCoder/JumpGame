@@ -15,5 +15,7 @@ MonoBehaviour:
   mapIcon: {fileID: -1636292714, guid: 4d1d1894bf0133147b386508fb8c756e, type: 3}
   wall: {fileID: -998345422, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
   backGround: {fileID: -170090946, guid: 782085895426b764fa539eb139c39bfd, type: 3}
-  normalGround: {fileID: -1555148235, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
-  crashGround: {fileID: -836321293, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  smallNormalGround: {fileID: -1555148235, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  smallCrashGround: {fileID: -836321293, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  bigNormalGround: {fileID: 432845554, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}
+  bigCrashGround: {fileID: -1388290741, guid: 1e1391585f7fe9e44bdc092fed8a3d18, type: 3}

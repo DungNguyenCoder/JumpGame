@@ -132,9 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 2
-  spriteRenderer: {fileID: 2291434170440943407}
   _normalSprite: {fileID: 2291434170440943407}
   _crashSprite: {fileID: 3929639394269856151}
+  col: {fileID: 5207245977836726130}
+  _isStartGround: 0
 --- !u!61 &5207245977836726130
 BoxCollider2D:
   m_ObjectHideFlags: 0

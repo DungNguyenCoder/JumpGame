@@ -47,8 +47,8 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PauseMusic();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_GAME_OVER);
-        Debug.Log("Game Over");
-        Debug.Log("High score: " + _highScore);
+        // Debug.Log("Game Over");
+        // Debug.Log("High score: " + _highScore);
         Time.timeScale = 0f;
     }
     public void PauseGame()
@@ -57,20 +57,21 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PauseMusic();
         _isPause = true;
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_PAUSE_GAME);
-        Debug.Log("Game pause");
+        // Debug.Log("Game pause");
     }
     public void ContinueGame()
     {
         Time.timeScale = 1f;
-        AudioManager.Instance.ResumeMusic();
+        AudioManager.Instance.ContinueMusic();
         _isPause = false;
         PanelManager.Instance.ClosePanel(GameConfig.PANEL_PAUSE_GAME);
-        Debug.Log("Game continue");
+        // Debug.Log("Game continue");
     }
     public void RestartGame()
     {
-        PanelManager.Instance.OpenPanel(GameConfig.PANEL_GAME_OVER);
-        AudioManager.Instance.PlayMusic();
+        PanelManager.Instance.ClosePanel(GameConfig.PANEL_GAME_OVER);
+        AudioManager.Instance.PlayMusicFromStart();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -96,5 +97,10 @@ class GameManager : Singleton<GameManager>
     public bool GetPerfect()
     {
         return this._isPerfect;
+    }
+
+    public bool GetPause()
+    {
+        return this._isPause;
     }
 }

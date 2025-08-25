@@ -17,6 +17,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnClickPlayButton()
     {
+        AudioManager.Instance.PlayMusicFromStart();
         SceneManager.LoadScene("GamePlay");
     }
 

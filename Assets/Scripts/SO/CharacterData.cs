@@ -9,4 +9,5 @@ public class CharacterData : ScriptableObject
     public Sprite spriteIcon;
     public Sprite spriteDemo;
     public string characterName;
+    public RuntimeAnimatorController animatorController;
 }
