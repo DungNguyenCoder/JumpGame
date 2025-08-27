@@ -2074,9 +2074,12 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   musicSource: {fileID: 543847190}
   SFXSource: {fileID: 440436745}
+  _isMutedMusic: 0
+  _isMutedSFX: 0
   jump: {fileID: 8300000, guid: aa39a9f4c52638744bfc9cff91bab613, type: 3}
   crash: {fileID: 8300000, guid: 3a1f132b8f390ea43bd0c43f3684203e, type: 3}
   gameOver: {fileID: 8300000, guid: 868bcc5b69b0aa041988bf2d6caeae78, type: 3}
+  click: {fileID: 8300000, guid: d1bd7456b8892364f82b55960c4e746b, type: 3}
 --- !u!4 &2135517537
 Transform:
   m_ObjectHideFlags: 0

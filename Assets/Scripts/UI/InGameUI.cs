@@ -39,6 +39,7 @@ public class InGameUI : MonoBehaviour
 
     public void OnClickPause()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         GameManager.Instance.PauseGame();
     }
 }

@@ -16,3 +16,13 @@ MonoBehaviour:
   spriteDemo: {fileID: 417259745, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
   characterName: Penguin
   animatorController: {fileID: 9100000, guid: 977bcc03f7f0d7c40a03c9b4a69de687, type: 2}
+  playerAnimation: {fileID: 6704059122021285306, guid: 9c01c95750f112949a88523d42e244dd, type: 3}
+  spritesAnimator:
+  - {fileID: -208435548, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: 207635668, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: -1284082386, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: 185787392, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: 1062204244, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: 1474294927, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: 214966628, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}
+  - {fileID: -1056183061, guid: 69f815fb70c9d6548a3ddea521214de9, type: 3}

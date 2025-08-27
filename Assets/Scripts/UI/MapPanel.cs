@@ -28,13 +28,12 @@ public class MapPanel : MonoBehaviour
 
     public void SelectMap(MapData data, Map selectedMap)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         foreach (Map map in _maps)
         {
             map.SetCheck(false);
         }
-
         selectedMap.SetCheck(true);
-
         PlayerPrefs.SetString(GameConfig.SELECTED_MAP_KEY, data.name);
         PlayerPrefs.Save();
     }

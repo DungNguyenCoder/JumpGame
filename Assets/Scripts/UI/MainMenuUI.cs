@@ -17,17 +17,20 @@ public class MainMenuUI : MonoBehaviour
 
     public void OnClickPlayButton()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         AudioManager.Instance.PlayMusicFromStart();
         SceneManager.LoadScene("GamePlay");
     }
 
     public void OnClickSettingButton()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         GameManager.Instance.Setting();
     }
 
     public void OnClickChooseButton()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         GameManager.Instance.Choose();
     }
 

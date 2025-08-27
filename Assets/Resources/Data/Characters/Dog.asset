@@ -16,3 +16,12 @@ MonoBehaviour:
   spriteDemo: {fileID: -880977665, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
   characterName: Dog
   animatorController: {fileID: 9100000, guid: ab9296b23c7ef3a43a7a6dd7a3d49c2f, type: 2}
+  playerAnimation: {fileID: 1342480954400003665, guid: 5b648a7d334b97a4584f01cc6902b85d, type: 3}
+  spritesAnimator:
+  - {fileID: 283093863, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: -340795745, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: 1728660649, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: -2138809157, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: -1033507393, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: 1060474551, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}
+  - {fileID: 1705776765, guid: bfd1fb1119657ff4cbc9379e14bfa0c3, type: 3}

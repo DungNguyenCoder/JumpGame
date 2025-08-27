@@ -8,20 +8,22 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
-    private bool _isMuted = false;
+    public bool _isMutedMusic = false;
+    public bool _isMutedSFX = false;
 
     public AudioClip jump;
     public AudioClip crash;
     public AudioClip gameOver;
+    public AudioClip click;
 
     public void PlaySFX(AudioClip audioClip)
     {
-        if (!_isMuted)
+        if (!_isMutedSFX)
             SFXSource.PlayOneShot(audioClip);
     }
     public void PlayMusic()
     {
-        if (!_isMuted) musicSource.Play();
+        if (!_isMutedMusic) musicSource.Play();
     }
     public void PauseMusic()
     {
@@ -37,26 +39,20 @@ public class AudioManager : Singleton<AudioManager>
             musicSource.UnPause();
         }
     }
-    public void MuteAll()
+    public void ToggleMusic()
     {
-        _isMuted = true;
-
-        if (musicSource) musicSource.mute = true;
-        if (SFXSource) SFXSource.mute = true;
-        Debug.Log("Mute");
+        _isMutedMusic = !_isMutedMusic;
+        if (musicSource) musicSource.mute = _isMutedMusic;
     }
-    public void UnMuteAll()
+    public void ToggleSFX()
     {
-        _isMuted = false;
-
-        if (musicSource) musicSource.mute = false;
-        if (SFXSource) SFXSource.mute = false;
-        Debug.Log("UnMute");
+        _isMutedSFX = !_isMutedSFX;
+        if (SFXSource) SFXSource.mute = _isMutedSFX;
     }
 
     public void PlayMusicFromStart()
     {
-        if (!_isMuted && musicSource != null)
+        if (!_isMutedMusic && musicSource != null)
         {
             musicSource.Stop();
             musicSource.time = 0f;

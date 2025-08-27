@@ -37,7 +37,7 @@ public class Ground : MonoBehaviour
         _halfWidth = _normalSprite.bounds.size.x / 2f;
 
         _direction = Random.value < 0.5f ? -1 : 1;
-        if(!_isStartGround)
+        if (!_isStartGround)
             _moveSpeed += Random.Range(-0.5f, 1.5f);
     }
     private void FixedUpdate()

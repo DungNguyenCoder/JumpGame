@@ -27,6 +27,7 @@ public class CharacterPanel : MonoBehaviour
 
     public void SelectCharacter(CharacterData data)
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         _characterImageDemo.sprite = data.spriteDemo;
         _characterName.text = data.characterName;
         PlayerPrefs.SetString(GameConfig.SELECTED_CHARACTER_KEY, data.name);

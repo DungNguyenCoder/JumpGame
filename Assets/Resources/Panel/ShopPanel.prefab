@@ -1128,6 +1128,8 @@ MonoBehaviour:
   destroyOnClose: 1
   _characterPanel: {fileID: 8982222628435737405}
   _mapPanel: {fileID: 2115276745676218128}
+  _characterIcon: {fileID: 7203080802560807838}
+  _mapIcon: {fileID: 6764356624764913846}
 --- !u!114 &5607217931436721907
 MonoBehaviour:
   m_ObjectHideFlags: 0

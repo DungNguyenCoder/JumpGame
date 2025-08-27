@@ -5,21 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class PausePanel : Panel
 {
+    [SerializeField] private GameObject muteMusic;
+    [SerializeField] private GameObject unMuteMusic;
+    [SerializeField] private GameObject muteSFX;
+    [SerializeField] private GameObject unMuteSFX;
+
+    private void OnEnable()
+    {
+        muteMusic.SetActive(AudioManager.Instance._isMutedMusic);
+        unMuteMusic.SetActive(!AudioManager.Instance._isMutedMusic);
+        muteSFX.SetActive(AudioManager.Instance._isMutedSFX);
+        unMuteSFX.SetActive(!AudioManager.Instance._isMutedSFX);
+    }
     public void OnClickContinueButton()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         GameManager.Instance.ContinueGame();
     }
-    public void OnClickMuteButton()
+    public void OnClickToggleMusicButton()
     {
-        AudioManager.Instance.MuteAll();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+        AudioManager.Instance.ToggleMusic();
+        muteMusic.SetActive(AudioManager.Instance._isMutedMusic);
+        unMuteMusic.SetActive(!AudioManager.Instance._isMutedMusic);
     }
-    public void OnClickUnMuteButton()
+    public void OnClickToggleSFXButton()
     {
-        AudioManager.Instance.UnMuteAll();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+        AudioManager.Instance.ToggleSFX();
+        muteSFX.SetActive(AudioManager.Instance._isMutedSFX);
+        unMuteSFX.SetActive(!AudioManager.Instance._isMutedSFX);
     }
 
     public void OnClickMainMenuButton()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         AudioManager.Instance.PlayMusicFromStart();
         SceneManager.LoadScene("MainMenu");
     }

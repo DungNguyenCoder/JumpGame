@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
     [SerializeField] private Animator animator;
+    private GameObject playerAnimation;
     // [SerializeField] private SpriteRenderer playerRenderer;
 
     private Ground _currentGround;
@@ -22,8 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
-        // if (playerRenderer == null)
-        //     playerRenderer = GetComponent<SpriteRenderer>();
+        // if (playerAnimation == null)
         ApplySelectedSkin();
     }
     private void Update()
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGroundLanding(GameObject groundObject)
     {
-        transform.SetParent(groundObject.transform);
+        transform.SetParent(groundObject.transform, true);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -126,7 +126,8 @@ public class PlayerController : MonoBehaviour
             _canJump = false;
             _onGround = false;
             _rb.velocity = new Vector2(0f, _rb.velocity.y);
-            transform.SetParent(null);
+            if (transform.parent == collision.transform)
+                transform.SetParent(null, true);
             collision.gameObject.SetActive(false);
         }
     }
@@ -139,10 +140,10 @@ public class PlayerController : MonoBehaviour
         CharacterData data = Resources.Load<CharacterData>(GameConfig.CHARACTER_DATA_PATH + charName);
         if (data != null)
         {
-            if (animator != null && data.animatorController != null)
+            if (data.playerAnimation != null)
             {
                 Debug.Log("Load animator success");
-                animator.runtimeAnimatorController = data.animatorController;
+                playerAnimation = Instantiate(data.playerAnimation, this.transform);
             }
             else
             {

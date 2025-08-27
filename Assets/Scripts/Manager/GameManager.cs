@@ -47,8 +47,6 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PauseMusic();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_GAME_OVER);
-        // Debug.Log("Game Over");
-        // Debug.Log("High score: " + _highScore);
         Time.timeScale = 0f;
     }
     public void PauseGame()
@@ -57,7 +55,6 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PauseMusic();
         _isPause = true;
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_PAUSE_GAME);
-        // Debug.Log("Game pause");
     }
     public void ContinueGame()
     {
@@ -65,13 +62,13 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.ContinueMusic();
         _isPause = false;
         PanelManager.Instance.ClosePanel(GameConfig.PANEL_PAUSE_GAME);
-        // Debug.Log("Game continue");
     }
     public void RestartGame()
     {
         PanelManager.Instance.ClosePanel(GameConfig.PANEL_GAME_OVER);
         AudioManager.Instance.PlayMusicFromStart();
         Time.timeScale = 1f;
+        _score = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

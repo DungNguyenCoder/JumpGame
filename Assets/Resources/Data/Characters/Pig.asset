@@ -16,3 +16,12 @@ MonoBehaviour:
   spriteDemo: {fileID: 537835197, guid: b6d504bf2ef2ada4f858c4488b86f9f7, type: 3}
   characterName: Pig
   animatorController: {fileID: 9100000, guid: a905adbf9f2ad7441b24449219187a0a, type: 2}
+  playerAnimation: {fileID: 1316933589824217902, guid: edca88fc9c16b014085e07ea49c3cf0e, type: 3}
+  spritesAnimator:
+  - {fileID: -15809662, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: -34519392, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: -403302723, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: 473395586, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: -1581868295, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: -1337013088, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
+  - {fileID: -1684736923, guid: 9c9103a2665bed44aa58d98ad1d022bc, type: 3}
