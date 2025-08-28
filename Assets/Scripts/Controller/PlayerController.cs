@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Ground _ground;
     [SerializeField] private Animator animator;
     private GameObject playerAnimation;
-    // [SerializeField] private SpriteRenderer playerRenderer;
 
     private Ground _currentGround;
     private bool _canJump = false;
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
-        // if (playerAnimation == null)
         ApplySelectedSkin();
     }
     private void Update()
@@ -51,16 +49,21 @@ public class PlayerController : MonoBehaviour
 
     private void HandleTounchInput()
     {
-        // if (Input.touchCount > 0)
-        // {
-        //     Touch touch = Input.GetTouch(0);
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
 
-        //     if (touch.phase == TouchPhase.Began)
-        //     {
-        //         Jump();
-        //     }
-        // }
-        if (Application.isEditor && Input.GetMouseButtonDown(0))
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (UIManager.Instance.IsPointerOverUI())
+                {
+                    Debug.Log("Click on UI");
+                    return;
+                }
+                Jump();
+            }
+        }
+        else if (Application.isEditor && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Jump");
             if (UIManager.Instance.IsPointerOverUI())
