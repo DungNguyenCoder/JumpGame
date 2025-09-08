@@ -16,7 +16,7 @@ public class Ground : MonoBehaviour
     private float _halfWidth;
     private float _time = 0f;
     private float _timeBeforeDestroy = 0.1f;
-    private int _touchEdgeLimit = 3;
+    private int _touchEdgeLimit = 2;
     private float _disFromEdgeLimit = 0.2f;
     private bool _playerOnTop = false;
     private bool _checkSFX = false;

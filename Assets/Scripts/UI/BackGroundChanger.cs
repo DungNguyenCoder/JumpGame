@@ -20,7 +20,7 @@ public class BackgroundChanger : MonoBehaviour
             if (_backGround != null)
             {
                 _backGround.sprite = data.backGround;
-                        Debug.Log("Loaded background");
+                // Debug.Log("Loaded background");
             }
         }
     }

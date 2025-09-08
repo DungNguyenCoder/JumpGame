@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private GroundSpawner _groundSpawner;
     [SerializeField] private Ground _ground;
-    [SerializeField] private Animator animator;
-    private GameObject playerAnimation;
+    [SerializeField] private GameObject playerAnimation;
 
     private Ground _currentGround;
     private bool _canJump = false;
@@ -57,7 +56,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (UIManager.Instance.IsPointerOverUI())
                 {
-                    Debug.Log("Click on UI");
+                    // Debug.Log("Click on UI");
                     return;
                 }
                 Jump();
@@ -65,10 +64,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (Application.isEditor && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
             if (UIManager.Instance.IsPointerOverUI())
             {
-                Debug.Log("Click on UI");
+                // Debug.Log("Click on UI");
                 return;
             }
             Jump();
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(GameConfig.START_GROUND_TAG))
         {
-            Debug.Log("Landed on start ground");
+            // Debug.Log("Landed on start ground");
             _canJump = true;
             _onGround = true;
             HandleGroundLanding(collision.gameObject);
@@ -103,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.AddScore(2);
             GameManager.Instance.SetPerfect(true);
-            Debug.Log("Perfect");
+            // Debug.Log("Perfect");
         }
         else
         {
@@ -137,21 +136,29 @@ public class PlayerController : MonoBehaviour
 
     private void ApplySelectedSkin()
     {
+        playerAnimation = Instantiate(playerAnimation, transform);
         string charName = PlayerPrefs.GetString(GameConfig.SELECTED_CHARACTER_KEY, "");
-        if (string.IsNullOrEmpty(charName)) return;
+        if (string.IsNullOrEmpty(charName))
+        {
+            // Debug.Log("No data");
+            return;
+        }
 
         CharacterData data = Resources.Load<CharacterData>(GameConfig.CHARACTER_DATA_PATH + charName);
         if (data != null)
         {
             if (data.playerAnimation != null)
             {
-                Debug.Log("Load animator success");
+                // Debug.Log("Load animator success");
+                playerAnimation.SetActive(false);
                 playerAnimation = Instantiate(data.playerAnimation, this.transform);
+                return;
             }
             else
             {
-                Debug.LogWarning("Animator or AnimatorController missing in CharacterData!");
+                // Debug.LogWarning("Animator missing");
             }
         }
+        
     }
 }

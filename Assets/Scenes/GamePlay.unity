@@ -386,6 +386,7 @@ MonoBehaviour:
   _groundSpawner: {fileID: 642181755}
   _ground: {fileID: 1507708064}
   animator: {fileID: 0}
+  playerAnimation: {fileID: 6704059122021285306, guid: 9c01c95750f112949a88523d42e244dd, type: 3}
 --- !u!1 &195380830
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,20 @@ public class CharacterPanel : MonoBehaviour
         LoadAvatar();
     }
 
+    private void OnEnable()
+    {
+        string saved = PlayerPrefs.GetString(GameConfig.SELECTED_CHARACTER_KEY, "");
+        if (!string.IsNullOrEmpty(saved))
+        {
+            CharacterData data = Resources.Load<CharacterData>(GameConfig.CHARACTER_DATA_PATH + saved);
+            if (data != null)
+            {
+                _characterImageDemo.sprite = data.spriteDemo;
+                _characterName.text = data.characterName;
+            }
+        }
+    }
+
     public void LoadAvatar()
     {
         CharacterData[] characterDatas = Resources.LoadAll<CharacterData>(GameConfig.CHARACTER_DATA_PATH);

@@ -13,6 +13,7 @@ public class MapPanel : MonoBehaviour
     private void Start()
     {
         LoadAvatar();
+        SelectedMap();
     }
 
     public void LoadAvatar()
@@ -36,5 +37,16 @@ public class MapPanel : MonoBehaviour
         selectedMap.SetCheck(true);
         PlayerPrefs.SetString(GameConfig.SELECTED_MAP_KEY, data.name);
         PlayerPrefs.Save();
+    }
+
+    private void SelectedMap()
+    {
+        string saved = PlayerPrefs.GetString(GameConfig.SELECTED_MAP_KEY, "");
+        foreach (var map in _maps)
+        {
+            bool isSelected = !string.IsNullOrEmpty(saved) && map.DataName == saved;
+            map.SetCheck(isSelected);
+            // Debug.Log("Load tick");
+        }    
     }
 }

@@ -10,12 +10,14 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject check;
     private MapData _data;
     private MapPanel _panel;
+    public string DataName => _data != null ? _data.name : "";
 
     public void Setup(MapData data, MapPanel panel)
     {
         _data = data;
         _panel = panel;
         mapIcon.sprite = data.mapIcon;
+        check.SetActive(false);
     }
 
     public void OnClick()

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameConfig : MonoBehaviour
+public class GameConfig
 {
     public static string PANEL_PAUSE_GAME = "PausePanel";
     public static string PANEL_GAME_OVER = "GameOverPanel";
@@ -15,8 +15,9 @@ public class GameConfig : MonoBehaviour
     public static string HIGH_SCORE_KEY = "HIGH_SCORE";
     public static string SELECTED_CHARACTER_KEY = "SelectedCharacter";
     public static string SELECTED_MAP_KEY = "SelectedMap";
+    public static string MUSIC_STATUS = "MusicStatus";
+    public static string SFX_STATUS = "SFXStatus";
     public static string GITHUB_LINK = "https://github.com/DungNguyenCoder";
-
     public static string CHARACTER_DATA_PATH = "data/Characters/";
     public static string MAP_DATA_PATH = "data/Maps/";
 }

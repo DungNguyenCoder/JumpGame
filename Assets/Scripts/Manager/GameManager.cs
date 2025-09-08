@@ -14,6 +14,7 @@ class GameManager : Singleton<GameManager>
     private bool _isPerfect;
     public override void Awake()
     {
+        // PlayerPrefs.DeleteAll();
         _score = 0;
         LoadHighScore();
         base.Awake();
@@ -47,6 +48,7 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PauseMusic();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_GAME_OVER);
+        _score = 0;
         Time.timeScale = 0f;
     }
     public void PauseGame()

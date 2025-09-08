@@ -7,15 +7,21 @@ public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
-
     public bool _isMutedMusic = false;
     public bool _isMutedSFX = false;
-
     public AudioClip jump;
     public AudioClip crash;
     public AudioClip gameOver;
     public AudioClip click;
 
+    public override void Awake()
+    {
+        base.Awake();
+        if (musicSource) musicSource.playOnAwake = false;
+        if (SFXSource) SFXSource.playOnAwake = false;
+        LoadAudioStatus();
+        ApplyInitialAudioStatus();
+    }
     public void PlaySFX(AudioClip audioClip)
     {
         if (!_isMutedSFX)
@@ -42,12 +48,30 @@ public class AudioManager : Singleton<AudioManager>
     public void ToggleMusic()
     {
         _isMutedMusic = !_isMutedMusic;
-        if (musicSource) musicSource.mute = _isMutedMusic;
+
+        if (_isMutedMusic)
+        {
+            if (musicSource && musicSource.isPlaying) musicSource.Pause();
+        }
+        else
+        {
+            if (musicSource)
+            {
+                if (musicSource.clip != null)
+                {
+                    musicSource.UnPause();
+                    if (!musicSource.isPlaying) musicSource.Play();
+                }
+            }
+        }
+        SaveAudioStatus();
     }
+
     public void ToggleSFX()
     {
         _isMutedSFX = !_isMutedSFX;
         if (SFXSource) SFXSource.mute = _isMutedSFX;
+        SaveAudioStatus();
     }
 
     public void PlayMusicFromStart()
@@ -57,6 +81,34 @@ public class AudioManager : Singleton<AudioManager>
             musicSource.Stop();
             musicSource.time = 0f;
             musicSource.Play();
+        }
+    }
+
+    private void SaveAudioStatus()
+    {
+        PlayerPrefs.SetInt(GameConfig.MUSIC_STATUS, _isMutedMusic == true ? 1 : 0);
+        PlayerPrefs.SetInt(GameConfig.SFX_STATUS, _isMutedSFX == true ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    private void LoadAudioStatus()
+    {
+        _isMutedMusic = PlayerPrefs.GetInt(GameConfig.MUSIC_STATUS) == 1 ? true : false;
+        _isMutedSFX = PlayerPrefs.GetInt(GameConfig.SFX_STATUS) == 1 ? true : false;
+    }
+
+    private void ApplyInitialAudioStatus()
+    {
+        if (SFXSource) SFXSource.mute = _isMutedSFX;
+
+        if (musicSource == null) return;
+
+        if (_isMutedMusic)
+        {
+            musicSource.Stop();
+        }
+        else
+        {
+            if (!musicSource.isPlaying) musicSource.Play();
         }
     }
 }

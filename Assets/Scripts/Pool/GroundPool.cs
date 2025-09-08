@@ -23,7 +23,7 @@ public class GroundPool : MonoBehaviour
             ground.name = "" + (i + 1);
             ground.gameObject.SetActive(false);
             _groundPool.Add(ground);
-            Debug.Log("Init Ground");
+            // Debug.Log("Init Ground");
         }
     }
 
