@@ -12,10 +12,12 @@ class GameManager : Singleton<GameManager>
     public int _highScore { get; private set; }
     private bool _isPause = false;
     private bool _isPerfect;
+    public int _groundLevel { get; private set; }
     public override void Awake()
     {
         // PlayerPrefs.DeleteAll();
         _score = 0;
+        _groundLevel = 0;
         LoadHighScore();
         base.Awake();
         Time.timeScale = 1f;
@@ -23,6 +25,7 @@ class GameManager : Singleton<GameManager>
     public void AddScore(int score)
     {
         _score += score;
+        UpdateGroundLevel();
         TryToUpdateHighScore();
     }
     private void TryToUpdateHighScore()
@@ -49,6 +52,7 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         PanelManager.Instance.OpenPanel(GameConfig.PANEL_GAME_OVER);
         _score = 0;
+        _groundLevel = 0;
         Time.timeScale = 0f;
     }
     public void PauseGame()
@@ -71,6 +75,7 @@ class GameManager : Singleton<GameManager>
         AudioManager.Instance.PlayMusicFromStart();
         Time.timeScale = 1f;
         _score = 0;
+        _groundLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -101,5 +106,13 @@ class GameManager : Singleton<GameManager>
     public bool GetPause()
     {
         return this._isPause;
+    }
+
+    private void UpdateGroundLevel()
+    {
+        if (_score < 10) _groundLevel = 0;
+        else if (_score < 20) _groundLevel = 1;
+        else if (_score < 30) _groundLevel = 2;
+        else                 _groundLevel = 3;
     }
 }

@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.AddScore(2);
             GameManager.Instance.SetPerfect(true);
+            
             // Debug.Log("Perfect");
         }
         else

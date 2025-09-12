@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ground : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 3f;
+
     [SerializeField] private SpriteRenderer _normalSprite;
     [SerializeField] private SpriteRenderer _crashSprite;
     [SerializeField] private BoxCollider2D col;
@@ -37,31 +38,32 @@ public class Ground : MonoBehaviour
         _halfWidth = _normalSprite.bounds.size.x / 2f;
 
         _direction = Random.value < 0.5f ? -1 : 1;
-        if (!_isStartGround)
-            _moveSpeed += Random.Range(-0.5f, 1.5f);
+        GroundSpeedLevel();
     }
     private void FixedUpdate()
     {
         if (!_isStartGround)
         {
             int randonDir = Random.value < 0.5f ? 0 : 1;
-            if (randonDir == 0)
-                MoveGroundNormal();
-            else
-                MoveGroundNotNormal();
+            MoveGroundNormal();
             CheckEdgeAndReverse();
         }
+    }
+    private void OnEnable()
+    {
+        _normalSprite.gameObject.SetActive(true);
+        _crashSprite.gameObject.SetActive(false);
+        _touchEdgeCount = 0;
+        _direction = 1;
+        _time = 0f;
+        _checkSFX = false;
+        _playerOnTop = false;
+        GroundSpeedLevel();
+        ApplyGround();
     }
     private void MoveGroundNormal()
     {
         transform.position += new Vector3(_moveSpeed * _direction * Time.deltaTime, 0f, 0f);
-    }
-    private void MoveGroundNotNormal()
-    {
-        float _waveFrequency = Random.Range(0f, 2f);
-        float _waveAmplitude = Random.Range(0.2f, 0.5f);
-        float yOffset = Mathf.Sin(Time.time * _waveFrequency) * _waveAmplitude * Time.deltaTime;
-        transform.position += new Vector3(_moveSpeed * _direction * Time.deltaTime, yOffset, 0f);
     }
     private void CheckEdgeAndReverse()
     {
@@ -98,16 +100,6 @@ public class Ground : MonoBehaviour
                 _touchEdgeCount = 0;
             }
         }
-    }
-    private void OnEnable()
-    {
-        _normalSprite.gameObject.SetActive(true);
-        _crashSprite.gameObject.SetActive(false);
-        _touchEdgeCount = 0;
-        _direction = 1;
-        _time = 0f;
-        _checkSFX = false;
-        _playerOnTop = false;
     }
     public void DisableGround()
     {
@@ -147,23 +139,58 @@ public class Ground : MonoBehaviour
         {
             if (!_isStartGround)
             {
-                int randomGround = Random.value < 0.5f ? -1 : 1;
-                if (randomGround == -1)
-                {
-                    _normalSprite.sprite = data.smallNormalGround;
-                    _crashSprite.sprite = data.smallCrashGround;
-                }
-                else
+                if (GameManager.Instance._groundLevel < 1)
                 {
                     _normalSprite.sprite = data.bigNormalGround;
                     _crashSprite.sprite = data.bigCrashGround;
                 }
+                else
+                {
+                    int randomGround = Random.value < 0.5f ? -1 : 1;
+                    if (randomGround == -1)
+                    {
+                        _normalSprite.sprite = data.smallNormalGround;
+                        _crashSprite.sprite = data.smallCrashGround;
+                    }
+                    else
+                    {
+                        _normalSprite.sprite = data.bigNormalGround;
+                        _crashSprite.sprite = data.bigCrashGround;
+                    }   
+                }
             }
             else
             {
-                _normalSprite.sprite = data.smallNormalGround;
-                _crashSprite.sprite = data.smallCrashGround;
+                _normalSprite.sprite = data.bigNormalGround;
+                _crashSprite.sprite = data.bigCrashGround;
             }
         }
+    }
+    private void GroundSpeedLevel()
+    {
+        if (!_isStartGround)
+        {
+            if (GameManager.Instance._groundLevel == 0)
+            {
+                _moveSpeed += Random.Range(-0.2f, 0.2f);
+            }
+            else if (GameManager.Instance._groundLevel == 1)
+            {
+                _moveSpeed += Random.Range(-0.5f, 0.5f);
+            }
+            else if (GameManager.Instance._groundLevel == 2)
+            {
+                _moveSpeed += Random.Range(0f, 1f);
+            }
+            else if (GameManager.Instance._groundLevel == 3)
+            {
+                _moveSpeed += Random.Range(1f, 3f);
+            }
+            Debug.Log("" + _moveSpeed);
+        }
+    }
+    private void GroundSkinLevel()
+    {
+
     }
 }

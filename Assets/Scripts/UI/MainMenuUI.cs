@@ -33,9 +33,4 @@ public class MainMenuUI : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
         GameManager.Instance.Choose();
     }
-
-    public void OnClickNoAdsButton()
-    {
-        //todo
-    }
 }
