@@ -189,8 +189,4 @@ public class Ground : MonoBehaviour
             Debug.Log("" + _moveSpeed);
         }
     }
-    private void GroundSkinLevel()
-    {
-
-    }
 }
