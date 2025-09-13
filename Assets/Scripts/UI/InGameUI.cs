@@ -5,38 +5,28 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class InGameUI : MonoBehaviour
+public class InGameUI : Singleton<InGameUI>
 {
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private GameObject perfect;
-    private float _time = 0f;
-
     private void Start()
     {
-        if (!perfect)
-        {
-            perfect.SetActive(false);
-        }
+        perfect.SetActive(false);
     }
-    private void Update()
+    public void StartPerfectTime()
+    {
+        StartCoroutine(PerfectTime());
+    }
+    public void UpdateScore()
     {
         score.text = GameManager.Instance._score.ToString();
-        if (GameManager.Instance.GetPerfect())
-        {
-            _time = 1f;
-            GameManager.Instance.SetPerfect(false);
-        }
-        if (_time > 0f)
-        {
-            _time -= Time.deltaTime;
-            if (!perfect.activeSelf) perfect.SetActive(true);
-        }
-        else
-        {
-            if (perfect.activeSelf) perfect.SetActive(false);
-        }
     }
-
+    IEnumerator PerfectTime()
+    {
+        perfect.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        perfect.SetActive(false);
+    }
     public void OnClickPause()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.click);

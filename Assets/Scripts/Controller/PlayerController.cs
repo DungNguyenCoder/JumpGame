@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Ground _currentGround;
     private bool _canJump = false;
     private bool _onGround = false;
-    private float _perfect = 0.1f;
+    private float _perfectDis = 0.1f;
     private bool _isOver = false;
     private Rigidbody2D _rb;
     private Collider2D _col;
@@ -98,16 +98,18 @@ public class PlayerController : MonoBehaviour
         }
         Vector3 groundCol = collision.collider.bounds.center;
         float disX = Mathf.Abs(_col.bounds.center.x - groundCol.x);
-        if (disX < _perfect)
+        if (disX < _perfectDis)
         {
             GameManager.Instance.AddScore(2);
+            InGameUI.Instance.UpdateScore();
             GameManager.Instance.SetPerfect(true);
-            
+            InGameUI.Instance.StartPerfectTime();
             // Debug.Log("Perfect");
         }
         else
         {
             GameManager.Instance.AddScore(1);
+            InGameUI.Instance.UpdateScore();
         }
         _canJump = true;
         _onGround = true;
