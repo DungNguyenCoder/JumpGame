@@ -385,7 +385,6 @@ MonoBehaviour:
   _jumpForce: 3
   _groundSpawner: {fileID: 642181755}
   _ground: {fileID: 1507708064}
-  animator: {fileID: 0}
   playerAnimation: {fileID: 6704059122021285306, guid: 9c01c95750f112949a88523d42e244dd, type: 3}
 --- !u!1 &195380830
 GameObject:
@@ -672,7 +671,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1734869872}
+  - {fileID: 1514835318411187005}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1111,11 +1110,6 @@ Transform:
   - {fileID: 1285300897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &1734869872 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5702455697911991458, guid: c0a5c09095e6c394a903a36df0e5e986, type: 3}
-  m_PrefabInstance: {fileID: 6496151696323846047}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1742526221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,6 +1327,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &1514835318411187005 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5702455697911991458, guid: c0a5c09095e6c394a903a36df0e5e986, type: 3}
+  m_PrefabInstance: {fileID: 6496151696323846047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6496151696323846047
 PrefabInstance:
   m_ObjectHideFlags: 0

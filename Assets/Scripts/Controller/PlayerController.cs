@@ -17,11 +17,13 @@ public class PlayerController : MonoBehaviour
     private bool _isOver = false;
     private Rigidbody2D _rb;
     private Collider2D _col;
+    private Animator _amin;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         ApplySelectedSkin();
+        _amin = GetComponentInChildren<Animator>();
     }
     private void Update()
     {
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_canJump)
         {
+            _amin.SetBool("jump", true);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
             _rb.velocity = new Vector2(0f, _jumpForce);
             _canJump = false;
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour
             HandleGroundLanding(collision.gameObject);
             return;
         }
+        _amin.SetBool("jump", false);
         Vector3 groundCol = collision.collider.bounds.center;
         float disX = Mathf.Abs(_col.bounds.center.x - groundCol.x);
         if (disX < _perfectDis)

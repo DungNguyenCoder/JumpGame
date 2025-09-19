@@ -186,7 +186,6 @@ public class Ground : MonoBehaviour
             {
                 _moveSpeed += Random.Range(1f, 3f);
             }
-            Debug.Log("" + _moveSpeed);
         }
     }
 }
